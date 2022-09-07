@@ -4,6 +4,7 @@ def search(query, ranking=lambda r: -r.stars):
     """A restaurant search engine."""
     results = [r for r in Restaurant.all if query in r.name]
     return sorted(results, key=rankings)
+    #sorted function gives back results from least to greatest according to the key function
 
 def num_shared_reviewers(restaurant, other):
     return fast_overlap(restaurant.reviewers, other.reviewers)
@@ -40,11 +41,11 @@ class Restaurant:
 def load_reviews(reviews_file):
     reviewers_by_restaurant = {}
     for line in open(reviews_file):
-        r = json.loads(line)
+        r = json.loads(line) #gives a dictionary
         business_id = r['business_id']
         if business_id not in reviewers_by_restaurant:
-            reviewers_by_restaurant[business_id] = []
-        reviewers_by_restaurant[business_id].append(r['user_id'])
+            reviewers_by_restaurant[business_id] = [r['user_id']] #没有business_id, 添加元素
+        reviewers_by_restaurant[business_id].append(r['user_id']) #已有business_id, 添加元素
     return reviewers_by_restaurant
 
 def load_restaurants(reviewers_by_restaurant, restaurants_file):
@@ -62,4 +63,4 @@ def run():
         print('>', end=' ')
         results = search.lookip(input().strip())
         for r in results:
-            print(r.name, 'shares reviews with', r.similar(3))
+            print(r.name, 'shares reviewers with', r.similar(3))
