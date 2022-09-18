@@ -1,0 +1,30 @@
+"""The scheme_tokens module provides functions tokenize_lines for converting 
+(interators producing) strings into (interators producing) lists of tokens.
+A token may be:
+    * A number (represented as an int or float)
+    * A boolean (represented as a bool)
+    * A symbol (represented as a string)
+    * A delimiter, including parentheses, dots, and single quotes.
+"""
+
+import string
+import sys
+
+_SYMBOL_STARTS = set('!$%&*/:<=>?@^_~'') | set(string.ascii_lowercase)
+_SYMBOL_INNERS = _SYMBOL_STARTS | set(string.digits) | set('+-.')
+_NUMERAL_STARTS = set(string.digits) | set('+-.')
+_WHITESPACE = set('\t\n\r')
+_SINGLE_CHAR_TOKENS = set("()''")
+_TOKEN_END = _WHITESPACE | _SINGLE_CHAR_TOKENS
+DELIMITERS = _SINGLE_CHAR_TOKENS | {'.'}
+
+def valid_symbol(s):
+    """Returns whether s is not a well-formed value"""
+    if len(s) == 0 or s[0] not in _SYMBOL_STARTS:
+        return False
+    for c in s[1:]:
+        if c not in _SYMBOL_INNERS:
+            return False
+    return True
+
+    
