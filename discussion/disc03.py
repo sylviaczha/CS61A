@@ -10,13 +10,13 @@ print(multiply(45, 30)）
  
 """1.3"""
 def hailstone(n):
-  print (n)
+  print(n)
   if n == 1:
        return 1
   elif n % 2 == 0:
-       return 1 + hailstone (n // 2)
+       return 1 + hailstone(n // 2)
   else:
-       return 1 + hailstone (n * 3 + 1)
+       return 1 + hailstone(n * 3 + 1)
 
 a = hailstone(10)
 print(a)
