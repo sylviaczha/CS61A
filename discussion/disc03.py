@@ -6,7 +6,7 @@ def multiply(m,n):
     return n + multiply(m-1, n)
   
  
-print(multiply(45, 30)
+print(multiply(45, 30)）
  
 """1.3"""
 def hailstone(n):
