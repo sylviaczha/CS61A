@@ -193,3 +193,25 @@ def count_coins(total):
     return helper(total, start_coin(total))
 
 
+from operator import sub, mul
+
+
+def make_anonymous_factorial():
+    """Return the value of an expression that computes factorial.
+
+    >>> make_anonymous_factorial()(5)
+    120
+    >>> from construct_check import check
+    >>> # ban any assignments or recursion
+    >>> check(HW_SOURCE_FILE, 'make_anonymous_factorial', ['Assign', 'AugAssign', 'FunctionDef', 'Recursion'])
+    True
+    """
+    ''' in function
+    def numbers(n):
+        if n == 1:
+            return 1
+        else:
+            return mul(n, numbers(n-1))
+    return numbers
+    '''
+    return lambda n: (lambda f: f(n, f))(lambda n, f: 1 if n == 1 else n*f(n-1, f))
