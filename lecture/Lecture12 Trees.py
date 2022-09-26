@@ -70,7 +70,7 @@ def increment_leaves(t):
 def increment(t):
     """Return a tree like t but with all labels incremented."""
     bs = [increment(b) for b in branches(t)]
-    return tree(label(t) + 1, bs]
+    return tree(label(t) + 1, bs)
 
 # Some recursive functions build up their results by manipulating the return value of a recursive call.
 
