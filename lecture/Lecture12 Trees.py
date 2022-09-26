@@ -48,7 +48,7 @@ def count_leaves(tree):
 def leaves(tree):
     """Return a list containing the leaf lables of tree."""
     if is_leaf(t):
-        return [lable(tree)]
+        return [label(tree)]
     else:
         return sum([leaves(b) for b in branches(tree)],[])
 
