@@ -21,6 +21,8 @@ def print_tree(t, indent=0):
     for b in branches(t):
         print_tree(b, indent + 1)
 
+        
+"""1.1"""
 def height(t):
     """Return the height of a tree."""
     if is_leaf(t):
@@ -28,6 +30,7 @@ def height(t):
     else:
         return 1 + max([height(b) for b in branches(t)])
 
+"""1.2"""
 def max_path_sum(t):
     """Return the maximum path sum of the tree."""
     if is_leaf(t):
@@ -35,6 +38,7 @@ def max_path_sum(t):
     else:
         return label(t) + max([max_path_sum(b) for b in branches(t)])
 
+"""1.3"""
 def square_tree(t):
     """Return a tree with the square of every element in t."""
     if is_leaf(t):
@@ -42,6 +46,7 @@ def square_tree(t):
     else:
         return tree(label(t)**2, [square_tree(b) for b in branches(t)])
 
+"""1.5"""
 def find_path(t, x):
     if label(t) == x:
         return [label(t)]
@@ -50,6 +55,7 @@ def find_path(t, x):
         if path:
             return [label(t)] + path
 
+"""2.2"""
 def prune_binary(t, nums):
     if is_leaf(t):
         if label(t) in nums:
